@@ -35,3 +35,4 @@ class GetLocationDeliveryman extends Event implements ShouldBroadcast
         return [$this->model->hash];
     }
 }
+

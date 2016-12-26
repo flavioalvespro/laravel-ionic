@@ -14,11 +14,12 @@ angular.module('starter', [
   ])
   .constant('appConfig', {
     baseUrl: 'http://192.168.1.223:8000',
-    pusherKey: '2fc11da86545bf860219'
+    pusherKey: 'e5d8eea82b0326e818ca'
   })
   .run(function($ionicPlatform,$window,appConfig) {
 
     $window.client = new Pusher(appConfig.pusherKey);
+  
     $ionicPlatform.ready(function() {
       if(window.cordova && window.cordova.plugins.Keyboard) {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

@@ -9,6 +9,7 @@
     "angular-resource": "~1.5.8",
     "ngCordova": "~0.1.27-alpha",
     "angular-google-maps": "~2.4.0",
-    "pusher-angular": "~0.1.9"
+    "pusher": "~3.0.0",
+    "pusher-angular": "~0.1.8"
   }
 }

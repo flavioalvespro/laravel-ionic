@@ -32,7 +32,6 @@
     "commit": "fe8b0ede25a82edf0dcd78039e085b957eda49e9"
   },
   "_source": "https://github.com/pusher/pusher-js.git",
-  "_target": "3.0.0",
-  "_originalSource": "pusher",
-  "_direct": true
+  "_target": "~3.0.0",
+  "_originalSource": "pusher"
 }

@@ -76,12 +76,14 @@ angular.module('starter.controllers')
 		};
 
 		function watchPositionDeliveryman(channel){
+
 			var pusher = $pusher($window.client),
 				channel = pusher.subscribe(channel);
-
-			channel.bind('App\\Events\\GetLocationDeliveryman',function(data){
-				console.log(data);
+			//console.log(channel);
+			channel.bind('App/Events/GetLocationDeliveryman',function(data){
+				console.log(data.geo);
 			});
+
 		};
 	
 }]);
