@@ -29,7 +29,9 @@ angular.module('starter.controllers')
 					{
 						text: '<i class="icon ion-forward"></i> Ver Detalhes',
 					},
-					{text: '<i class="icon ion-forward"></i> Ver Entrega'}
+					{	
+						text: '<i class="icon ion-forward"></i> Ver Entrega'
+					}
 				],
 				titleText: 'O que fazer ?',
 				cancelText: 'Cancelar',

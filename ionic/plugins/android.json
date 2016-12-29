@@ -30,6 +30,10 @@
         },
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.ionicframework.ionic420290"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "109602725798",
+            "PACKAGE_NAME": "com.ionicframework.ionic420290"
         }
     },
     "dependent_plugins": {

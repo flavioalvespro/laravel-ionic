@@ -9,14 +9,17 @@ angular.module('starter.services', []);
 angular.module('starter.filters', []);
 
 angular.module('starter', [
-    'ionic', 'starter.controllers','starter.services','starter.filters',
-    'angular-oauth2', 'ngResource', 'ngCordova', 'uiGmapgoogle-maps'
+    'ionic','ionic.service.core','starter.controllers','starter.services','starter.filters',
+    'angular-oauth2', 'ngResource', 'ngCordova', 'uiGmapgoogle-maps', 'pusher-angular'
   ])
   .constant('appConfig', {
-    baseUrl: 'http://192.168.1.223:8000'
+    baseUrl: 'http://192.168.1.223:8000',
+    pusherKey: 'e5d8eea82b0326e818ca'
   })
-  .run(function($ionicPlatform) {
+  .run(function($ionicPlatform,$window,appConfig,$localStorage) {
 
+    $window.client = new Pusher(appConfig.pusherKey);
+  
     $ionicPlatform.ready(function() {
       if(window.cordova && window.cordova.plugins.Keyboard) {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -31,6 +34,20 @@ angular.module('starter', [
       if(window.StatusBar) {
         StatusBar.styleDefault();
       }
+
+      Ionic.io();
+      
+      var push = new Ionic.Push({
+        debug: true,
+        onNotification: function(message){
+          alert(message.text);
+        }
+      });
+
+      push.register(function(token){
+        $localStorage.set('device_token',token.token);
+      });
+
     });
 
   })

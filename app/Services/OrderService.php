@@ -7,19 +7,22 @@ use App\Repositories\ProductRepository;
 use App\Services\OrderService;
 use DB;
 use App\Models\Order;
+use Dmitrovskiy\IonicPush\PushProcessor;
 
 class OrderService{
 
 	private $orderRepository;
 	private $cupomRepository;
 	private $productRepository;
+	private $pushProcessor;
 
-	public function __construct(OrderRepository $orderRepository, CupomRepository $cupomRepository, ProductRepository $productRepository){
+	public function __construct(OrderRepository $orderRepository, CupomRepository $cupomRepository, ProductRepository $productRepository, PushProcessor $pushProcessor){
 
 
 		$this->orderRepository = $orderRepository;
 		$this->cupomRepository = $cupomRepository;
 		$this->productRepository = $productRepository;
+		$this->pushProcessor = $pushProcessor;
 
 	}
 
@@ -82,10 +85,24 @@ class OrderService{
 		
 		$order->status = $status;
 
-		if((int)($order->status) == 1 && !$order->hash){
-			$order->hash = md5((new \DateTime())->getTimestamp());
+		switch ((int)$status) {
+			case 1:
+				if(!$order->hash){
+					$order->hash = md5((new \DateTime())->getTimestamp());
+				}
+				$order->save();
+				break;
+			
+			case 2:
+				$user = $order->client->user;
+				$order->save();
+				$this->pushProcessor->notify([$user->device_token],[
+					'message' => "Seu pedido {{$order->id}} acabou de ser entregue"
+				]);
+				break;
 		}
-		$order->save();
+
+		
 		return $order;
 
 	}
