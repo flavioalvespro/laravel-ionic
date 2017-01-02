@@ -22,6 +22,7 @@ angular.module('starter.controllers')
 			}).then(function(){
 				stopWatchPosition();
 			});
+			
 			DeliverymanOrder.updateStatus({id: $stateParams.id},{status: 1},function(){
 				var watchOptions = {
 					timeout: 3000,

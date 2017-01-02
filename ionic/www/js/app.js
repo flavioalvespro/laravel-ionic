@@ -40,7 +40,7 @@ angular.module('starter', [
       var push = new Ionic.Push({
         debug: true,
         onNotification: function(message){
-          alert(message.text);
+          console.log(message);
         }
       });
 
